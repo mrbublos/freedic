@@ -23,7 +23,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@android:drawable/ic_lock_silent_mode_off"
-            android:background="@color/colorPrimary"
+            android:background="#2196F3"
             android:visibility="gone"
             android:contentDescription="@string/how_it_sounds" />
 
@@ -36,7 +36,7 @@
             android:gravity="right|center_vertical"
             android:text=""
             android:textSize="20sp"
-            android:background="@color/colorPrimary"
+            android:background="#2196F3"
             app:layout_constraintBottom_toTopOf="@+id/guideline2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/sound"

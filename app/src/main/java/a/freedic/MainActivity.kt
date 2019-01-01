@@ -53,5 +53,11 @@ class MainActivity : AppCompatActivity() {
             model.autocomplete(search.text.toString())
             true
         }
+
+        clear.setOnClickListener {
+            word.setText("")
+        }
+
+        progress.visibility = View.GONE
     }
 }

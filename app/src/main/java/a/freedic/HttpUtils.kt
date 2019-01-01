@@ -24,7 +24,7 @@ object HttpUtils {
         "Calling: $method $url".log()
         val caller = when (method) {
             HttpMethod.GET -> url.httpGet()
-            HttpMethod.POST -> url.httpPost().body(body)
+            HttpMethod.POST -> url.httpPost().header(mapOf("Content-Type" to "application/json")).body(body)
         }
 
         return suspendCoroutine { continuation ->
@@ -35,6 +35,7 @@ object HttpUtils {
                         continuation.resume(result.component1()!!)
                         return@responseJson
                     }
+                    continuation.resumeWithException(Exception("Failure response"))
                 } catch (e: Exception) {
                     continuation.resumeWithException(e)
                 }

@@ -17,10 +17,11 @@ class DictionaryPageViewModel : ViewModel() {
         if (query.isEmpty()) { return }
 
         searchJob?.cancel()
-        searchJob = GlobalScope.launch {
+        searchJob = GlobalScope.launch(Dispatchers.IO) {
             val britannica = async { TranslationService.getBritannicaTranslation(query) }
             val reverso = async { TranslationService.getReversoTranslation(query) }
-            translations.value = britannica.await() + reverso.await()
+            val result = britannica.await() + reverso.await()
+            launch(Dispatchers.Main) { translations.value = result }
         }
     }
 
@@ -28,9 +29,10 @@ class DictionaryPageViewModel : ViewModel() {
         if (query.isEmpty() || query.length < 3) { return }
 
         autocompleteJob?.cancel()
-        autocompleteJob = GlobalScope.launch {
+        autocompleteJob = GlobalScope.launch(Dispatchers.IO) {
             delay(500)
-            autocomplete.value = TranslationService.getBritannicaAutocomplete(query)
+            val result = TranslationService.getBritannicaAutocomplete(query)
+            launch(Dispatchers.Main) { autocomplete.value = result }
         }
     }
 }

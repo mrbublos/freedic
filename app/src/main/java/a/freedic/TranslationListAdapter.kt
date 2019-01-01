@@ -16,9 +16,9 @@ class TranslationListAdapter(val items : MutableList<Translation>) : RecyclerVie
     override fun getItemCount() = items.size
 
     override fun onBindViewHolder(holder: TranslationView, position: Int) {
-        holder.view.translations.setText(items[position].translation)
-        holder.view.word.text = items[position].displayText
-        holder.view.sound.visibility = if (items[position].soundUrl.isEmpty()) View.INVISIBLE else View.VISIBLE
+        holder.view.translations.text = items[position].translation
+        holder.view.search.text = items[position].displayText
+        holder.view.sound.visibility = if (items[position].soundUrl.isEmpty()) View.GONE else View.VISIBLE
         // TODO implement sound onclick
     }
 

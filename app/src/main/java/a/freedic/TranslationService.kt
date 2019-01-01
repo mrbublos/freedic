@@ -38,9 +38,9 @@ object TranslationService {
         val meanings = word.getJSONArray("InputLanguageMeanings")
         var soundUrl = ""
         val header = meanings.mapArr { arr ->
-            arr.map {
-                meaning -> meaning.getString("DisplayText")
+            arr.map { meaning ->
                 if (!meaning.getString("SoundURL").isNullOrEmpty()) { soundUrl = meaning.getString("SoundURL") }
+                meaning.getString("DisplayText")
             }.joinToString(",")
         }.joinToString(",")
         val translation = word.getString("OutputLanguageMeaningsString").replace(";", "\n")

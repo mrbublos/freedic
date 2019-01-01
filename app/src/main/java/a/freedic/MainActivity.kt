@@ -43,19 +43,19 @@ class MainActivity : AppCompatActivity() {
         model.translations.observe(this, translationObserver)
         model.autocomplete.observe(this, autocompleteObserver)
 
-        search.setOnClickListener {
+        searchButton.setOnClickListener {
             model.search(search.text.toString())
             progress.visibility = View.VISIBLE
             translations.visibility = View.GONE
         }
 
-        word.setOnKeyListener { _, _, _ ->
+        search.setOnKeyListener { _, _, _ ->
             model.autocomplete(search.text.toString())
             true
         }
 
         clear.setOnClickListener {
-            word.setText("")
+            search.setText("")
         }
 
         progress.visibility = View.GONE

@@ -26,7 +26,7 @@ object TranslationService {
 
     suspend fun getReversoTranslation(query: String): List<Translation> {
         val encodedQuery = URLEncoder.encode(query, UTF_8.name())
-        val result = HttpUtils.call4Json(HttpMethod.POST, "$reversoUrl/bst-query-service?source_text=$encodedQuery&source_lang=he&target_lang=en&npage=1&nrows=4&expr_sug=1&json=1&dym_apply=true&pos_reorder=5")
+        val result = HttpUtils.call4Json(HttpMethod.GET, "$reversoUrl/bst-query-service?source_text=$encodedQuery&source_lang=he&target_lang=en&npage=1&nrows=4&expr_sug=1&json=1&dym_apply=true&pos_reorder=5")
         return result?.obj()
                 ?.getJSONArray("dictionary_entry_list")
                 ?.map { entry ->

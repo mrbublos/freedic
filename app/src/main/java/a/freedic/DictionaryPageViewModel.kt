@@ -18,8 +18,20 @@ class DictionaryPageViewModel : ViewModel() {
 
         searchJob?.cancel()
         searchJob = GlobalScope.launch(Dispatchers.IO) {
-            val britannica = async { TranslationService.getBritannicaTranslation(query) }
-            val reverso = async { TranslationService.getReversoTranslation(query) }
+            val britannica = async {
+                try {
+                    TranslationService.getBritannicaTranslation(query)
+                } catch (e: Exception) {
+                    listOf<Translation>()
+                }
+            }
+            val reverso = async {
+                try {
+                    TranslationService.getReversoTranslation(query)
+                } catch (e: Exception) {
+                    listOf<Translation>()
+                }
+            }
             val result = britannica.await() + reverso.await()
             launch(Dispatchers.Main) { translations.value = result }
         }

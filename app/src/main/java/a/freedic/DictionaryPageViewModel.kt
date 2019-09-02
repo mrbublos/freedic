@@ -11,11 +11,9 @@ class DictionaryPageViewModel : ViewModel() {
     }
 
     val translations = MutableLiveData<List<Translation>>()
-    val verb = MutableLiveData<List<VerbConjugation>>()
+    val verbs = MutableLiveData<List<VerbConjugation>>()
     val search = MutableLiveData<String>()
-    val autocomplete = MutableLiveData<List<String>>()
 
-    private var autocompleteJob : Job? = null
     private var searchJob : Job? = null
 
     fun searchTranslation(query: String) {
@@ -52,18 +50,7 @@ class DictionaryPageViewModel : ViewModel() {
             } catch (e: Exception) {
                 listOf<VerbConjugation>()
             }
-            launch(Dispatchers.Main) { verb.value = result }
-        }
-    }
-
-    fun autocomplete(query: String) {
-        if (query.isEmpty() || query.length < 3) { return }
-
-        autocompleteJob?.cancel()
-        autocompleteJob = GlobalScope.launch(Dispatchers.IO) {
-            delay(500)
-            val result = TranslationService.getBritannicaAutocomplete(query)
-            launch(Dispatchers.Main) { autocomplete.value = result }
+            launch(Dispatchers.Main) { verbs.value = result }
         }
     }
 }

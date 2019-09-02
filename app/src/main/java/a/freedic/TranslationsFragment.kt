@@ -1,11 +1,9 @@
 package a.freedic
 
-import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.translations_list.*
 
 class TranslationsFragment : PagerFragment(R.layout.translations_list) {
@@ -28,16 +26,9 @@ class TranslationsFragment : PagerFragment(R.layout.translations_list) {
             adapter.items.clear()
             adapter.items.addAll(it)
             adapter.notifyDataSetChanged()
-            progress.visibility = View.GONE
-            translations.visibility = View.VISIBLE
         }
 
-//        val autocompleteObserver = Observer<List<String>> {
-//             TODO impl
-//        }
-
         model.translations.observe(this, translationObserver)
-//        model.autocomplete.observe(this, autocompleteObserver)
     }
 
     override fun search(text: String) {

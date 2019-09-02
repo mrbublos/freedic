@@ -10,7 +10,7 @@ import kotlin.coroutines.suspendCoroutine
 object VerbService {
 
     private var lang = "ru"
-    private const val search = "/ru/search/?q="
+    private const val search = "/en/search/?q="
     private const val base = "https://www.pealim.com"
 
     suspend fun queryData(query: String): List<VerbConjugation> {
@@ -64,9 +64,9 @@ object VerbService {
                             future3SingularF = getForm(this, "IMPF-3fs"),
                             future3PluralM = getForm(this, "IMPF-3mp"),
                             future3PluralF = getForm(this, "IMPF-3fp"),
-                            imperative1SingularM = getForm(this, "IMP-2ms"),
+                            imperativeSingularM = getForm(this, "IMP-2ms"),
                             imperativeSingularF = getForm(this, "IMP-2fs"),
-                            imperative1PluralM = getForm(this, "IMP-2mp"),
+                            imperativePluralM = getForm(this, "IMP-2mp"),
                             imperativePluralF = getForm(this, "IMP-2fp"),
                             infinitive = getForm(this, "INF-L")
                     )

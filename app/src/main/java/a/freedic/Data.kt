@@ -15,7 +15,7 @@ data class VerbConjugation(
         val future2PluralM: Word, val future2PluralF: Word,
         val future3SingularM: Word, val future3SingularF: Word,
         val future3PluralM: Word, val future3PluralF: Word,
-        val imperative1SingularM: Word, val imperativeSingularF: Word,
-        val imperative1PluralM: Word, val imperativePluralF: Word,
+        val imperativeSingularM: Word, val imperativeSingularF: Word,
+        val imperativePluralM: Word, val imperativePluralF: Word,
         val infinitive: Word
 )

@@ -38,3 +38,7 @@ fun <R> JSONArray.mapArr(action: (obj: JSONArray) -> R): MutableList<R>  {
         action(this.get(it) as JSONArray)
     }.toMutableList()
 }
+
+fun Word.displayString(): String {
+    return hebrew + "\n" + transcription + "\n"
+}

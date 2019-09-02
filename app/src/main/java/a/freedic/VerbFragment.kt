@@ -1,25 +1,33 @@
 package a.freedic
 
-import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import kotlinx.android.synthetic.main.activity_main.*
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.translations_list.*
 
 class VerbFragment : PagerFragment(R.layout.translations_list) {
 
     private lateinit var model : DictionaryPageViewModel
-
+    private lateinit var layoutManager: RecyclerView.LayoutManager
+    private lateinit var adapter: VerbListAdapter
 
     override fun init() {
         model = ViewModelProviders.of(this).get(DictionaryPageViewModel::class.java)
 
+        layoutManager = LinearLayoutManager(context)
+        adapter = VerbListAdapter(mutableListOf())
+
+        translations.layoutManager = layoutManager
+        translations.adapter = adapter
+
         val verbObserver = Observer<List<VerbConjugation>> {
-            progress.visibility = View.GONE
-            translations.visibility = View.VISIBLE
+            adapter.items.clear()
+            adapter.items.addAll(it)
+            adapter.notifyDataSetChanged()
         }
 
-        model.verb.observe(this, verbObserver)
+        model.verbs.observe(this, verbObserver)
     }
 
     override fun search(text: String) {

@@ -27,5 +27,6 @@ dependencies {
     implementation 'androidx.cardview:cardview:1.0.0' //for Android
     implementation 'androidx.recyclerview:recyclerview:1.0.0' //for Android
 
+    implementation 'org.jsoup:jsoup:1.10.3'
     implementation 'com.github.kittinunf.fuel:fuel-android:1.16.0' //for Android
 }

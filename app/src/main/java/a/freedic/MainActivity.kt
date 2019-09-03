@@ -31,13 +31,13 @@ class MainActivity : AppCompatActivity() {
         progress.visibility = View.GONE
 
         val model = ViewModelProviders.of(this).get(DictionaryPageViewModel::class.java)
-        val observer = Observer<Any> {
+        val observer = Observer<List<Translation>> {
             progress.visibility = View.GONE
             pager.visibility = View.VISIBLE
         }
 
         model.translations.observe(this, observer)
-        model.verbs.observe(this, observer)
+//        model.verbs.observe(this, observer)
     }
 }
 

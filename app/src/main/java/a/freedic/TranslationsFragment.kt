@@ -14,7 +14,7 @@ class TranslationsFragment : PagerFragment(R.layout.translations_list) {
 
 
     override fun init() {
-        model = ViewModelProviders.of(this).get(DictionaryPageViewModel::class.java)
+        model = ViewModelProviders.of(activity!!).get(DictionaryPageViewModel::class.java)
 
         layoutManager = LinearLayoutManager(context)
         adapter = TranslationListAdapter(mutableListOf())

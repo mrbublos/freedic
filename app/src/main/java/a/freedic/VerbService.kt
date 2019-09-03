@@ -9,19 +9,23 @@ import kotlin.coroutines.suspendCoroutine
 
 object VerbService {
 
-    private var lang = "ru"
-    private const val search = "/en/search/?q="
+    private var lang = ""
+    private const val search = "/search/?q="
     private const val base = "https://www.pealim.com"
 
     suspend fun queryData(query: String): List<VerbConjugation> {
+        if (query.isEmpty()) { return listOf() }
+        if ("абвгдеёжзийклмнопрстуфхцчшщъыьэюя".contains(query.toLowerCase()[0])) { lang = "/ru" }
+        if ("qwertyuiopasdfghjklzxcvbnm".contains(query.toLowerCase()[0])) { lang = "/en" }
+
         return suspendCoroutine { continuation ->
             try {
-                Jsoup.connect("$base$search$query").get().run {
+                Jsoup.connect("$base$lang$search$query").get().run {
                     GlobalScope.launch(Dispatchers.IO) {
                         try {
-                            val result = getElementsByAttributeValueContaining("onclick", "/ru/dict/").map {
+                            val result = getElementsByAttributeValueContaining("onclick", "/dict/").map {
                                 GlobalScope.async(Dispatchers.IO) {
-                                    queryVerb(it.attr("onclick").replace(Regex(".*&quot;(.*)&quot;.*"), "$1"))
+                                    queryVerb(it.attr("onclick").replace(Regex(".*\"(.*)\".*"), "$1"))
                                 }
                             }.awaitAll()
                             continuation.resume(result)
@@ -80,7 +84,7 @@ object VerbService {
 
     // TODO see how fast is that
     private fun getForm(document: Document, id: String): Word {
-        return Word(hebrew = document.select("#$id>div>div.menukad>span").text(),
+        return Word(hebrew = document.select("#$id>div>div>span.menukad").text(),
                 transcription = document.select("#$id>div>div.transcription").text().replace(Regex("</?b>"), ""))
     }
 }

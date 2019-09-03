@@ -15,6 +15,7 @@ class DictionaryPageViewModel : ViewModel() {
     val search = MutableLiveData<String>()
 
     private var searchJob : Job? = null
+    private var searchVerbJob : Job? = null
 
     fun searchTranslation(query: String) {
         if (query.isEmpty()) { return }
@@ -43,8 +44,8 @@ class DictionaryPageViewModel : ViewModel() {
     fun searchVerb(query: String) {
         if (query.isEmpty()) { return }
 
-        searchJob?.cancel()
-        searchJob = GlobalScope.launch(Dispatchers.IO) {
+        searchVerbJob?.cancel()
+        searchVerbJob = GlobalScope.launch(Dispatchers.IO) {
             val result = try {
                 VerbService.queryData(query)
             } catch (e: Exception) {

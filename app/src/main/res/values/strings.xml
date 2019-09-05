@@ -4,18 +4,17 @@
     <string name="text_to_translate">text to translate</string>
     <string name="go">GO</string>
     <string name="how_it_sounds">how it sounds</string>
-    <string name="infinitive">Infinitive</string>
+    <string name="infinitive">Inf</string>
     <string name="tense">Tense</string>
-    <string name="person">Person</string>
-    <string name="singular_m">Singular M.</string>
-    <string name="singular_f">Singular F.</string>
-    <string name="plural_m">Plural M.</string>
-    <string name="plural_f">Plural F.</string>
-    <string name="present">Present</string>
+    <string name="singular_m">Sing M.</string>
+    <string name="singular_f">Sing F.</string>
+    <string name="plural_m">Pl M.</string>
+    <string name="plural_f">Pl F.</string>
+    <string name="present">Pres</string>
     <string name="past">Past</string>
     <string name="_1st">1st</string>
     <string name="_2nd">2nd</string>
     <string name="_3rd">3rd</string>
     <string name="future">Future</string>
-    <string name="imperative">Imperative</string>
+    <string name="imperative">Imp</string>
 </resources>

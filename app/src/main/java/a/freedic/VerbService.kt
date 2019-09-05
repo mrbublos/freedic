@@ -85,6 +85,7 @@ object VerbService {
     // TODO see how fast is that
     private fun getForm(document: Document, id: String): Word {
         return Word(hebrew = document.select("#$id>div>div>span.menukad").text(),
-                transcription = document.select("#$id>div>div.transcription").text().replace(Regex("</?b>"), ""))
+                transcription = document.select("#$id>div>div.transcription").text().replace(Regex("</?b>"), ""),
+                translation = document.select("#$id>div.meaning>strong").text())
     }
 }

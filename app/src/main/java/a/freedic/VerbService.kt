@@ -20,7 +20,9 @@ object VerbService {
 
         return suspendCoroutine { continuation ->
             try {
+                "Calling $base$lang$search$query".log()
                 Jsoup.connect("$base$lang$search$query").get().run {
+                    "Received ${this.toString()}".log()
                     GlobalScope.launch(Dispatchers.IO) {
                         try {
                             val result = getElementsByAttributeValueContaining("onclick", "/dict/").map {
@@ -43,7 +45,9 @@ object VerbService {
     private suspend fun queryVerb(verb: String): VerbConjugation {
         return suspendCoroutine { continuation ->
             try {
+                "Calling $base$verb".log()
                 Jsoup.connect("$base$verb").get().run {
+                    "Received ${this.toString()}".log()
                     val result = VerbConjugation(
                             singularM = getForm(this, "AP-ms"),
                             singularF = getForm(this, "AP-fs"),

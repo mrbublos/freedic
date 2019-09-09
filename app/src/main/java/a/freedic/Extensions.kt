@@ -39,6 +39,6 @@ fun <R> JSONArray.mapArr(action: (obj: JSONArray) -> R): MutableList<R>  {
     }.toMutableList()
 }
 
-fun Word.displayString(): String {
-    return hebrew + "\n" + transcription + "\n"
+fun Word.displayString(addTranslation: Boolean = false): String {
+    return "$hebrew\n$transcription${if (addTranslation) "\n" + translation else ""}".replace(Regex("\\s"), "\n")
 }

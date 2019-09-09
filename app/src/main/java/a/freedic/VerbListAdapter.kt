@@ -44,9 +44,8 @@ class VerbListAdapter(val items : MutableList<VerbConjugation>) : RecyclerView.A
         holder.view.imfs.text = item.imperativeSingularF.displayString()
         holder.view.immp.text = item.imperativePluralM.displayString()
         holder.view.imfp.text = item.imperativePluralF.displayString()
-        holder.view.infinitive.text = "${item.infinitive.displayString()}\n${item.infinitive.translation}"
+        holder.view.infinitive.text = item.infinitive.displayString(true)
     }
-
 }
 
 class VerbView(val view: View) : RecyclerView.ViewHolder(view)

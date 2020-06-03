@@ -6,7 +6,7 @@ import kotlin.text.Charsets.UTF_8
 
 object TranslationService {
 
-    private const val britannicaUrl = "https://services.britannicaenglish.com"
+    private const val britannicaUrl = "http://services.britannicaenglish.com"
     private const val reversoUrl = "https://context.reverso.net"
 
     suspend fun getBritannicaTranslation(query: String): List<Translation> {
